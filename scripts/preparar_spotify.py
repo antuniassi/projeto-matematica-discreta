@@ -1,18 +1,24 @@
-
 import pandas as pd
 import sys
 from pathlib import Path
 
+RAIZ = Path(__file__).resolve().parent.parent
 
-# Configuração dos arquivos
+PASTA_DADOS = RAIZ / "dados"
+PASTA_PROLOG = RAIZ / "prolog"
 
+PASTA_DADOS.mkdir(exist_ok=True)
+PASTA_PROLOG.mkdir(exist_ok=True)
+
+# Arquivo de entrada
 if len(sys.argv) > 1:
-    arquivo_entrada = Path(sys.argv[1])
+    arquivo_entrada = Path(sys.argv[1]).resolve()
 else:
-    arquivo_entrada = Path("spotify_data.csv")
+    arquivo_entrada = PASTA_DADOS / "spotify_data.csv"
 
-arquivo_csv = arquivo_entrada.parent / "spotify_preparado.csv"
-arquivo_prolog = arquivo_entrada.parent / "spotify_base.pl"
+# Arquivos de saida
+arquivo_csv = PASTA_DADOS / "spotify_preparado.csv"
+arquivo_prolog = PASTA_PROLOG / "spotify_base.pl"
 
 
 
